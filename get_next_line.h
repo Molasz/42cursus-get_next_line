@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:40:36 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/24 17:24:37 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:34:24 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@
 typedef struct s_file
 {
 	int				fd;
-	int				line;
-	char			*buffer;
+	int				end;
+	int				nbuff;
+	char			*buff;
 	struct s_file	*next;
 }		t_file;
 
 char	*get_next_line(int fd);
+
 t_file	*get_file(int fd);
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif
