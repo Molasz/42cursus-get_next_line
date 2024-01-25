@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:40:36 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/25 00:34:24 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:29:50 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 4
 # endif
 
 # include <stdio.h>
@@ -25,7 +25,6 @@ typedef struct s_file
 {
 	int				fd;
 	int				end;
-	int				nbuff;
 	char			*buff;
 	struct s_file	*next;
 }		t_file;
@@ -34,5 +33,7 @@ char	*get_next_line(int fd);
 
 t_file	*get_file(int fd);
 char	*ft_strjoin(char *s1, char *s2);
+
+size_t	ft_strlen(char *s);
 
 #endif
