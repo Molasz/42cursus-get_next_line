@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:39:30 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/29 17:22:48 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/30 00:24:55 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static int	read_buffer(t_file *file)
 	read_len = read(file->fd, str, BUFFER_SIZE);
 	if (read_len < 0)
 	{
-		file->end = 1;
-		free(str);
+		file_end(str, file);
 		return (1);
 	}
 	else if (read_len > 0)
@@ -38,10 +37,7 @@ static int	read_buffer(t_file *file)
 		file->buff = str;
 	}
 	else
-	{
-		free(str);
-		file->end = 1;
-	}
+		file_end(str, file);
 	return (0);
 }
 
@@ -106,11 +102,11 @@ static char	*buff_next_line(t_file *file)
 
 char	*get_next_line(int fd)
 {
-	static t_file	files[OPEN_MAX];
+	static t_file	files[500];
 	t_file			*file;
 	char			*next_line;
 
-	if (fd < 0 || fd > OPEN_MAX)
+	if (fd < 0 || fd > 500)
 		return (NULL);
 	file = get_file(files, fd);
 	if (!file)

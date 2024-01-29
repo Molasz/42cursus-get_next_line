@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:40:24 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/29 16:27:47 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/30 00:24:12 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,16 @@ char	*new_line(t_file *file)
 		return (NULL);
 	line[len] = '\0';
 	i = 0;
-	while (++i < len)
+	while (i < len)
+	{
 		line[i] = file->buff[i];
+		i++;
+	}
 	return (line);
+}
+
+void	file_end(char *str, t_file *file)
+{
+	free(str);
+	file->end = 1;
 }
