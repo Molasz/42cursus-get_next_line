@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:39:30 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/25 18:19:10 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:22:48 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ static int	read_buffer(t_file *file)
 		return (1);
 	read_len = read(file->fd, str, BUFFER_SIZE);
 	if (read_len < 0)
+	{
+		file->end = 1;
+		free(str);
 		return (1);
+	}
 	else if (read_len > 0)
 	{
 		if (read_len < BUFFER_SIZE)
@@ -34,7 +38,10 @@ static int	read_buffer(t_file *file)
 		file->buff = str;
 	}
 	else
+	{
+		free(str);
 		file->end = 1;
+	}
 	return (0);
 }
 
@@ -54,21 +61,27 @@ static int	newline_buff(t_file *file)
 	return (0);
 }
 
-static int	calc_buff(t_file *file, int line_len)
+static int	calc_buff(t_file *file, char *line)
 {
 	char	*res;
+	int		line_len;
 	int		i;
 
-	res = malloc(ft_strlen(file->buff) - line_len + 1);
-	if (!res)
-		return (1);
-	i = 0;
-	while (file->buff[i + line_len])
+	res = NULL;
+	line_len = ft_strlen(line);
+	if (line_len)
 	{
-		res[i] = file->buff[i + line_len];
-		i++;
+		res = malloc(ft_strlen(file->buff) - line_len + 1);
+		if (!res)
+			return (1);
+		i = 0;
+		while (file->buff[i + line_len])
+		{
+			res[i] = file->buff[i + line_len];
+			i++;
+		}
+		res[i] = '\0';
 	}
-	res[i] = '\0';
 	free(file->buff);
 	file->buff = res;
 	return (0);
@@ -77,41 +90,39 @@ static int	calc_buff(t_file *file, int line_len)
 static char	*buff_next_line(t_file *file)
 {
 	char	*line;
-	int		len;
-	int		i;
 
 	while (!newline_buff(file) && !file->end)
 	{
 		if (read_buffer(file))
 			return (NULL);
 	}
-	if (file->end && !ft_strlen(file->buff))
+	if (file->end && !file->buff)
 		return (NULL);
-	len = 0;
-	while (file->buff[len] != '\n' && file->buff[len] != '\0')
-		len++;
-	line = malloc(len + 1);
-	if (!line)
-		return (NULL);
-	line[len] = '\0';
-	i = -1;
-	while (++i <= len)
-		line[i] = file->buff[i];
-	if (calc_buff(file, i))
+	line = new_line(file);
+	if (calc_buff(file, line))
 		return (NULL);
 	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	t_file	*file;
-	char	*next_line;
+	static t_file	files[OPEN_MAX];
+	t_file			*file;
+	char			*next_line;
 
-	if (fd < 0)
+	if (fd < 0 || fd > OPEN_MAX)
 		return (NULL);
-	file = get_file(fd);
+	file = get_file(files, fd);
 	if (!file)
 		return (NULL);
 	next_line = buff_next_line(file);
+	if (!next_line)
+	{
+		if (file->buff)
+		{
+			free(file->buff);
+			file->buff = NULL;
+		}
+	}
 	return (next_line);
 }

@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:11:20 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/25 18:21:30 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:51:55 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	test(int fd)
 
 	s = get_next_line(fd);
 	printf("(%d): %s|\n", fd, s);
-	free(s);
+	if (s)
+		free(s);
 }
 
 int	main(void)
@@ -35,14 +36,6 @@ int	main(void)
 	test3 = open("test/onlynl.txt", O_RDONLY);
 	test4 = open("test/nonl.txt", O_RDONLY);
 	test5 = open("test/1char.txt", O_RDONLY);
-	test(test1);
-	test(test1);
-	test(test1);
 	test(test2);
-	test(test2);
-	test(test2);
-	test(test3);
-	test(test3);
-	test(test3);
 	return (0);
 }
