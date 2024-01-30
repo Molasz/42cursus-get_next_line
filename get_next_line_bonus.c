@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 18:33:32 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/30 18:36:20 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:56:16 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || fd > OPEN_MAX + 1)
 		return (NULL);
 	file = get_file(files, fd);
-	if (!file)
-		return (NULL);
 	next_line = buff_next_line(file);
 	if (!next_line)
 	{

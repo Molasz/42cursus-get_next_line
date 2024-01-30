@@ -6,11 +6,12 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:11:20 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/29 20:10:39 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:52:16 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 #include <fcntl.h>
 
 void	test(int fd)

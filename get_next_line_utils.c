@@ -6,24 +6,25 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:40:24 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/30 12:27:34 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:08:59 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_file	*get_file(t_file *files, int fd)
+t_file	*get_file(int fd)
 {
-	t_file	*file;
+	static t_file	*file = NULL;
 
-	file = files + fd;
-	if (!file->init)
+	if (!file || !file->init)
 	{
+		file = malloc(sizeof (t_file));
+		if (!file)
+			return (NULL);
 		file->fd = fd;
 		file->end = 0;
 		file->init = 1;
 		file->buff = NULL;
-		files[fd] = *file;
 	}
 	return (file);
 }
