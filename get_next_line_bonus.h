@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 11:40:36 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/30 12:32:48 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/01/30 18:34:10 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/01/30 18:34:18 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-
-# include <stdio.h>
 
 typedef struct s_file
 {

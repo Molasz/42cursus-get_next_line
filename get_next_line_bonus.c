@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 11:39:30 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/30 12:28:33 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/01/30 18:33:32 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/01/30 18:36:20 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	read_buffer(t_file *file)
 {
@@ -105,11 +105,11 @@ static char	*buff_next_line(t_file *file)
 
 char	*get_next_line(int fd)
 {
-	static t_file	files[OPEN_MAX];
+	static t_file	files[OPEN_MAX + 1];
 	t_file			*file;
 	char			*next_line;
 
-	if (fd < 0 || fd > OPEN_MAX)
+	if (fd < 0 || fd > OPEN_MAX + 1)
 		return (NULL);
 	file = get_file(files, fd);
 	if (!file)

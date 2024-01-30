@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 11:40:24 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/30 12:27:34 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/01/30 18:35:47 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/01/30 18:35:49 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 t_file	*get_file(t_file *files, int fd)
 {
