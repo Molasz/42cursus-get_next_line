@@ -105,24 +105,19 @@ static char	*buff_next_line(t_file *file)
 
 char	*get_next_line(int fd)
 {
-	t_file	*file;
-	char	*next_line;
+	static t_file	files[OPEN_MAX + 1];
+	t_file			*file;
+	char			*next_line;
 
-	if (fd < 0 || fd > OPEN_MAX)
+	if (fd < 0 || fd > OPEN_MAX + 1)
 		return (NULL);
-	file = get_file(fd);
-	if (!file)
-		return (NULL);
+	file = get_file(files, fd);
 	next_line = buff_next_line(file);
 	if (!next_line)
 	{
 		if (file->buff)
 			free(file->buff);
-		if (file->init)
-		{
-			file->init = 0;
-			free(file);
-		}
+		file->init = 0;
 	}
 	return (next_line);
 }

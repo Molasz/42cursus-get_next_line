@@ -21,6 +21,10 @@
 # include <unistd.h>
 # include <limits.h>
 
+# ifndef OPEN_MAX
+#  define OPEN_MAX 10240
+# endif
+
 typedef struct s_file
 {
 	int		fd;
@@ -31,7 +35,7 @@ typedef struct s_file
 
 char	*get_next_line(int fd);
 
-t_file	*get_file(int fd);
+t_file	*get_file(t_file *files, int fd);
 size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*new_line(t_file *file);

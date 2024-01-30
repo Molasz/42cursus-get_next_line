@@ -12,19 +12,18 @@
 
 #include "get_next_line.h"
 
-t_file	*get_file(int fd)
+t_file	*get_file(t_file *files, int fd)
 {
-	static t_file	*file = NULL;
+	t_file	*file;
 
-	if (!file || !file->init)
+	file = files + fd;
+	if (!file->init)
 	{
-		file = malloc(sizeof (t_file));
-		if (!file)
-			return (NULL);
 		file->fd = fd;
 		file->end = 0;
 		file->init = 1;
 		file->buff = NULL;
+		files[fd] = *file;
 	}
 	return (file);
 }

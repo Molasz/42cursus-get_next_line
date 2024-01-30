@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 18:34:10 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/01/30 18:34:18 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:35:14 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 10240
+# endif
 
 typedef struct s_file
 {
